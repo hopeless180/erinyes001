@@ -14,14 +14,14 @@ import cc.erinyes.service.DDinfoService;
 /**
  * Servlet implementation class inputDDinfo
  */
-@WebServlet("/inputDDinfo")
-public class inputDDinfo extends HttpServlet {
+@WebServlet(name = "inputDD", urlPatterns = "/inputDD")
+public class inputDD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public inputDDinfo() {
+    public inputDD() {
         super();
         // TODO Auto-generated constructor DDb
     }
@@ -40,34 +40,26 @@ public class inputDDinfo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method DDb
 		request.setCharacterEncoding("utf-8");
-		String nicheng=request.getParameter("nicheng");
-		String truename=request.getParameter("truename");
-		byte xb=Byte.parseByte(request.getParameter("xb"));
-		String csrq=request.getParameter("csrq");
-		String zy=request.getParameter("zy");
-		System.out.println(zy);
-		//String kc=request.getParameter("kc");
-		String kcs[]=request.getParameterValues("kc");
-		String xqs[]=request.getParameterValues("xq");
-		String bz=request.getParameter("bz");
-		DDinfo DD=new DDinfo();
-		DD.setNicheng(nicheng);
-		DD.setTruename(truename);
+		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		String name = request.getParameter("name");
+		String creator = request.getParameter("creator");
+		String status = request.getParameter("status");
+		String content = request.getParameter("content");
+		double cost = Double.parseDouble(request.getParameter("cost"));
+		double total = cost * quantity;
 		
-		DD.setCsrq(csrq);
-		if(csrq.equals(""))
-			DD.setCsrq(null);
-		if(kcs!=null)
-		DD.setKc(kcs);
-		if(xqs!=null)
-		DD.setXq(xqs);
-		DD.setBz(bz);
-		DD.setZy(zy);
-		DD.setXb(xb);
+		DDinfo DD=new DDinfo();
+		DD.setname(name);
+		DD.setcreator(creator);
+		DD.setcontent(content);
+		DD.setcost(cost);
+		DD.setstatus(status);
+		DD.settotal(total);
+		DD.setquantity(quantity);
 		if(new DDinfoService().addDD(DD))
-			response.sendRedirect("../inputDDInfo_success.jsp");
+			response.sendRedirect("../displayDD.jsp");
 		else
-			response.sendRedirect("../inputDDInfo.jsp");
+			response.sendRedirect("../inputDD.jsp");
 			
 	}
 

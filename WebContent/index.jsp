@@ -22,7 +22,7 @@
 	
 </head>
 <body>
-	<form action="user/loginServlet" name="login" >
+	<form action="loginServlet" name="login" >
 	username：<input type="text" name="username" id="username"><br/>
 	password：<input type="password" name="password"  id="password"><br/>
 	<input type="submit" value = "登录">

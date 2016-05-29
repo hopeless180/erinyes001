@@ -2,6 +2,7 @@ package cc.erinyes.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import cc.erinyes.conn.conn;
 import cc.erinyes.model.userTable;
 import cc.erinyes.service.userService;
 
+@WebServlet(name = "loginServlet", urlPatterns = "/loginServlet")
 public class loginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 

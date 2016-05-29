@@ -21,16 +21,15 @@ public class DDinfoService {
 	public boolean addDD(DDinfo DD) {
 		try {
 			pstmt = conn.prepareStatement("insert into DD"
-					+ "(id,name,quantity,cost,total,content,creator,status) "
-					+ "values(?,?,?,?,?,?,?,?)");
-			pstmt.setInt(1, DD.getid());
-			pstmt.setString(2, DD.getname());
-			pstmt.setInt(3, DD.getquantity());
-			pstmt.setDouble(4, DD.getcost());
-			pstmt.setDouble(5, DD.gettotal());
-			pstmt.setString(6, DD.getcontent());
-			pstmt.setString(7, DD.getcreator());
-			pstmt.setString(8, DD.getstatus());
+					+ "(DD_NAME, DD_QUANTITY, DD_COST, DD_TOTAL, DD_CONTENT, DD_CREATOR , DD_STATUS) "
+					+ "values(?,?,?,?,?,?,?)");
+			pstmt.setString(1, DD.getname());
+			pstmt.setInt(2, DD.getquantity());
+			pstmt.setDouble(3, DD.getcost());
+			pstmt.setDouble(4, DD.gettotal());
+			pstmt.setString(5, DD.getcontent());
+			pstmt.setString(6, DD.getcreator());
+			pstmt.setString(7, DD.getstatus());
 
 			pstmt.executeUpdate();
 			return true;
@@ -74,7 +73,7 @@ public class DDinfoService {
 		try {
 			pstmt = conn
 					.prepareStatement("update DD set DD_NAME=? , DD_CREATOR=? ,DD_QUANTITY=? ,"
-							+ "DD_COST=? , DD_TOTAL=?, DD_STATUS=?, DD_CONTENT=?    where id=?");
+							+ "DD_COST=? , DD_TOTAL=?, DD_STATUS=?, DD_CONTENT=?    where DD_ID=?");
 			pstmt.setString(1, DD.getname());
 			pstmt.setString(2, DD.getcreator());
 			pstmt.setInt(3, DD.getquantity());

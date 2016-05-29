@@ -17,7 +17,7 @@ public class MSinfo {
 	public int getmid(){
 		return mid;
 	}
-	public void setmio(int mid){
+	public void setmid(int mid){
 		this.mid = mid;
 	}
 	public int getquantity(){

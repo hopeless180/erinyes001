@@ -34,5 +34,8 @@ public class KCinfo {
 	public String getcontent(){
 		return content;
 	}
+	public void setcontent(String content){
+		this.content = content;
+	}
 	
 }

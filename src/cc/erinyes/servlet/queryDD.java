@@ -15,6 +15,7 @@ import cc.erinyes.service.DDinfoService;
 /**
  * Servlet implementation class queryDD
  */
+@WebServlet(name = "queryDD", urlPatterns = "/queryDD") 
 public class queryDD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -32,6 +32,7 @@
 		Iterator iter = DDL.iterator();
 	%>
 	<table>
+		<a href = "inputDD.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>订单代码</td>
 			<td>订购物品</td>
@@ -56,6 +57,7 @@
 			<td><%=DD.gettotal()%></td>
 			<td><%=DD.getstatus()%></td>
 			<td><%=DD.getcontent()%></td>
+			<td><a href="user/deleteInfoServlet?id=<%=DD.getid()%>&key=DD">删除</a></td>
 		</tr>
 		<%
 			i++;
