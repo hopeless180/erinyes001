@@ -26,7 +26,7 @@
 <jsp:include page="isLogin.jsp"></jsp:include>
 <body>
 	<center>
-		<form action="user/inputRX" method="post">
+		<form action="inputRX" method="post">
 			<table bgColor="#c0c0c0">
 				<tr>
 					<td align="center" bgcolor=green colspan=2><font color=white>员工信息表录入</font></td>

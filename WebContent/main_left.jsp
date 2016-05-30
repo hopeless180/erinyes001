@@ -25,24 +25,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <ul>
   	生产管理模块
-  	<li><a href = "user/queryDD" target = "main_right">生产订单</a></li>
-  	<li><a href = "user/queryPG" target = "main_right">派工单</a></li>
-  	<li><a href = "user/queryMS" target = "main_right">领料单</a></li>
-  	<li><a href = "user/queryCA" target = "main_right">质检单</a></li>
-  	<li><a href = "user/queryRK" target = "main_right">入库单</a></li>
-  	<li><a href = "user/queryCK" target = "main_right">出库单</a></li>
+  	<li><a href = "queryDD" target = "main_right">生产订单</a></li>
+  	<li><a href = "queryPG" target = "main_right">派工单</a></li>
+  	<li><a href = "queryMS" target = "main_right">领料单</a></li>
+  	<li><a href = "queryCA" target = "main_right">质检单</a></li>
+  	<li><a href = "queryRK" target = "main_right">入库单</a></li>
+  	<li><a href = "queryCK" target = "main_right">出库单</a></li>
   </ul>
   <ul>
   	调度模块
-  	<li><a href = "user/queryRX" target = "main_right">员工信息表</a></li>
-  	<li><a href = "user/queryGX" target = "main_right">生产工序</a></li>
-  	<li><a href = "user/queryRD" target = "main_right">人员调度表</a></li>
+  	<li><a href = "queryRX" target = "main_right">员工信息表</a></li>
+  	<li><a href = "queryGX" target = "main_right">生产工序</a></li>
+  	<li><a href = "queryRD" target = "main_right">人员调度表</a></li>
   </ul>
   <ul>
   	防错模块
-  	<li><a href = "user/queryERR" target = "main_right">出错申报表</a></li>
-  	<li><a href = "user/queryEH" target = "main_right">错误处理单</a></li>
+  	<li><a href = "queryERR" target = "main_right">出错申报表</a></li>
+  	<li><a href = "queryEH" target = "main_right">错误处理单</a></li>
   </ul>
-  <a href="user/exitServlet" target="_top">退出</a><br>
+  <a href="exitServlet" target="_top">退出</a><br>
   </body>
 </html>

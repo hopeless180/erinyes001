@@ -66,7 +66,7 @@
 			<td><%=student.getKcs()%></td>
 			<td><%=student.getXqs()%></td>
 			<td><%=student.getBz()%></td>
-			<td><a href="student/modifyOneStuServlet?id=<%=student.getId()%>">修改</a></td>
+			<td><a href="">修改</a></td>
 		</tr>
 		<%
 			i++;

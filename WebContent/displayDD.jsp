@@ -57,7 +57,7 @@
 			<td><%=DD.gettotal()%></td>
 			<td><%=DD.getstatus()%></td>
 			<td><%=DD.getcontent()%></td>
-			<td><a href="user/deleteInfoServlet?id=<%=DD.getid()%>&key=DD">删除</a></td>
+			<td><a href="deleteInfoServlet?id=<%=DD.getid()%>&key=DD">删除</a></td>
 		</tr>
 		<%
 			i++;
