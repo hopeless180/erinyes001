@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "exitServlet", urlPatterns = "/exitServlet")
+//@webservlet(name = "exitServlet", urlPatterns = "/exitServlet")
 public class exitServlet extends HttpServlet {
 
 	/**
@@ -58,7 +58,7 @@ public class exitServlet extends HttpServlet {
 
 		HttpSession session=request.getSession();
 		session.removeAttribute("user");
-		response.sendRedirect("../index.jsp");
+		response.sendRedirect("/mysys/index.jsp");
 	}
 
 	/**

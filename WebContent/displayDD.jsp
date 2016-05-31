@@ -58,6 +58,7 @@
 			<td><%=DD.getstatus()%></td>
 			<td><%=DD.getcontent()%></td>
 			<td><a href="deleteInfoServlet?id=<%=DD.getid()%>&key=DD">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=DD.getid()%>&key=DD">修改</a></td>
 		</tr>
 		<%
 			i++;

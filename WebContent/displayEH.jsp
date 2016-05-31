@@ -32,6 +32,7 @@
 		Iterator iter = EHL.iterator();
 	%>
 	<table>
+	<a href = "inputEH.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>出错处理单代码</td>
 			<td>错误处理人</td>
@@ -50,6 +51,8 @@
 			<td><%=EH.geterrid()%></td>
 			<td><%=EH.getdate() %></td>
 			<td><%=EH.getinfo()%></td>
+			<td><a href="deleteInfoServlet?id=<%=EH.getid()%>&key=EH">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=EH.getid()%>&key=EH">修改</a></td>
 		</tr>
 		<%
 			i++;

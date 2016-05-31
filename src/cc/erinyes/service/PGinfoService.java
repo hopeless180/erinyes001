@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.MSinfo;
 import cc.erinyes.model.PGinfo;
 
 public class PGinfoService {
@@ -22,7 +23,7 @@ public class PGinfoService {
 	public boolean addPG(PGinfo PG) {
 		try {
 			pstmt = conn.prepareStatement("insert into PG"
-					+ "(PG_CONPANY, PG_BEGIN, PG_END, PG_NAME, PG_NRIRONG) "
+					+ "(PG_CONPANY, PG_BEGIN, PG_END, PG_NAME, PG_NEIRONG) "
 					+ "values(?,?,?,?,?)");
 			pstmt.setString(1, PG.getcompany());
 			pstmt.setString(2, PG.getbegin());
@@ -47,12 +48,12 @@ public class PGinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				PGinfo PG = new PGinfo();
-				PG.setid(rs.getInt(1));
-				PG.setcompany(rs.getString(2));
-				PG.setbegin(rs.getString(3));
-				PG.setend(rs.getString(4));
-				PG.setname(rs.getString(5));
-				PG.setneirong(rs.getString(6));
+				PG.setid(rs.getInt(6));
+				PG.setcompany(rs.getString(1));
+				PG.setbegin(rs.getString(2));
+				PG.setend(rs.getString(3));
+				PG.setname(rs.getString(4));
+				PG.setneirong(rs.getString(5));
 				PGL.add(PG);
 			}
 			return PGL;
@@ -64,8 +65,35 @@ public class PGinfoService {
 		}
 
 	}
+	
+	public PGinfo queryPGbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from PG where PG_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				PGinfo PG = new PGinfo();
+				PG.setid(rs.getInt(6));
+				PG.setcompany(rs.getString(1));
+				PG.setbegin(rs.getString(2));
+				PG.setend(rs.getString(3));
+				PG.setname(rs.getString(4));
+				PG.setneirong(rs.getString(5));
+				return PG;
 
-	public boolean updateStu(PGinfo PG) {
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public boolean updatePG(PGinfo PG) {
 
 		try {
 			pstmt = conn
@@ -91,6 +119,10 @@ public class PGinfoService {
 		try {
 			pstmt = conn.prepareStatement("delete from PG where PG_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table PG drop PG_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table PG add PG_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(PG_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {

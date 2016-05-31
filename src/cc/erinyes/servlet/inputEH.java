@@ -14,7 +14,7 @@ import cc.erinyes.service.EHinfoService;
 /**
  * Servlet implementation class inputEHinfo
  */
-@WebServlet(name = "inputEH", urlPatterns = "/inputEH")
+//@webservlet(name = "inputEH", urlPatterns = "/inputEH")
 public class inputEH extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,9 +53,9 @@ public class inputEH extends HttpServlet {
 		EH.sethandler(handler);
 		EH.setinfo(info);
 		if(new EHinfoService().addEH(EH))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputEH.jsp");
+			response.sendRedirect("/mysys/inputEH.jsp");
 			
 	}
 

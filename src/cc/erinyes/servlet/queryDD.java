@@ -15,7 +15,7 @@ import cc.erinyes.service.DDinfoService;
 /**
  * Servlet implementation class queryDD
  */
-@WebServlet(name = "queryDD", urlPatterns = "/queryDD") 
+//@webservlet(name = "queryDD", urlPatterns = "/queryDD") 
 public class queryDD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryDD extends HttpServlet {
 		List DDL = new DDinfoService().queryAllDD();
 		HttpSession session=request.getSession();
 		session.setAttribute("DDL",DDL);
-		response.sendRedirect("../displayDD.jsp");
+		response.sendRedirect("/mysys/displayDD.jsp");
 	}
 
 }

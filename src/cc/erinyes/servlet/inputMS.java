@@ -14,7 +14,7 @@ import cc.erinyes.service.MSinfoService;
 /**
  * Servlet implementation class inputMSinfo
  */
-@WebServlet(name = "inputMS", urlPatterns = "/inputMS")
+//@webservlet(name = "inputMS", urlPatterns = "/inputMS")
 public class inputMS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -54,9 +54,9 @@ public class inputMS extends HttpServlet {
 		MS.setrepository(repository);
 		MS.setdate(date);
 		if(new MSinfoService().addMS(MS))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputMS.jsp");
+			response.sendRedirect("/mysys/inputMS.jsp");
 			
 	}
 

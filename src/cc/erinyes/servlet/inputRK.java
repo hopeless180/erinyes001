@@ -14,7 +14,7 @@ import cc.erinyes.service.RKinfoService;
 /**
  * Servlet implementation class inputRKinfo
  */
-@WebServlet(name = "inputRK", urlPatterns = "/inputRK")
+//@webservlet(name = "inputRK", urlPatterns = "/inputRK")
 public class inputRK extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,9 +55,9 @@ public class inputRK extends HttpServlet {
 		RK.setno(no);
 		RK.setuser(user);
 		if(new RKinfoService().addRK(RK))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputRK.jsp");
+			response.sendRedirect("/mysys/inputRK.jsp");
 			
 	}
 

@@ -16,7 +16,7 @@ import cc.erinyes.service.PGinfoService;
 /**
  * Servlet implementation class inputPGinfo
  */
-@WebServlet(name = "inputPG", urlPatterns = "/inputPG")
+//@webservlet(name = "inputPG", urlPatterns = "/inputPG")
 public class inputPG extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,9 +55,9 @@ public class inputPG extends HttpServlet {
 		PG.setname(name);
 		PG.setneirong(neirong);
 		if(new PGinfoService().addPG(PG))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputPG.jsp");
+			response.sendRedirect("/mysys/inputPG.jsp");
 			
 	}
 

@@ -15,7 +15,7 @@ import cc.erinyes.service.MSinfoService;
 /**
  * Servlet implementation class queryMS
  */
-@WebServlet(name = "queryMS", urlPatterns = "/queryMS") 
+//@webservlet(name = "queryMS", urlPatterns = "/queryMS") 
 public class queryMS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryMS extends HttpServlet {
 		List MSL = new MSinfoService().queryAllMS();
 		HttpSession session=request.getSession();
 		session.setAttribute("MSL",MSL);
-		response.sendRedirect("../displayMS.jsp");
+		response.sendRedirect("/mysys/displayMS.jsp");
 	}
 
 }

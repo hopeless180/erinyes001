@@ -9,7 +9,8 @@ import cc.erinyes.model.userTable;
 
 public class userService {
 	private Connection conn;
-private PreparedStatement pstmt;
+	private PreparedStatement pstmt;
+	
 	public userService() {
 		conn = new cc.erinyes.conn.conn().getCon();
 	}
@@ -20,15 +21,13 @@ private PreparedStatement pstmt;
 		try {
 			System.out.println(user.getUsername());
 			pstmt=conn.prepareStatement("select * from usertable where username=? and password=?");
-		pstmt.setString(1,user.getUsername());
-		pstmt.setString(2,user.getPassword());
-		ResultSet rs=pstmt.executeQuery();
+			pstmt.setString(1,user.getUsername());
+			pstmt.setString(2,user.getPassword());
+			ResultSet rs=pstmt.executeQuery();
 		if(rs.next())
 			return true;
 		else
 			return false;
-		
-		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.EHinfo;
 import cc.erinyes.model.ERRinfo;
 
 public class ERRinfoService {
@@ -47,12 +48,12 @@ public class ERRinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ERRinfo ERR = new ERRinfo();
-				ERR.setid(rs.getInt(1));
-				ERR.setfinder(rs.getString(2));
-				ERR.setname(rs.getString(3));
-				ERR.setdate(rs.getString(4));
-				ERR.setinfo(rs.getString(5));
-				ERR.setstatus(rs.getString(6));
+				ERR.setid(rs.getInt(6));
+				ERR.setfinder(rs.getString(1));
+				ERR.setname(rs.getString(2));
+				ERR.setdate(rs.getString(3));
+				ERR.setinfo(rs.getString(4));
+				ERR.setstatus(rs.getString(5));
 				ERRL.add(ERR);
 			}
 			return ERRL;
@@ -64,8 +65,35 @@ public class ERRinfoService {
 		}
 
 	}
+	
+	public ERRinfo queryERRbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from ERR where ERR_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				ERRinfo ERR = new ERRinfo();
+				ERR.setid(rs.getInt(6));
+				ERR.setfinder(rs.getString(1));
+				ERR.setname(rs.getString(2));
+				ERR.setdate(rs.getString(3));
+				ERR.setinfo(rs.getString(4));
+				ERR.setstatus(rs.getString(5));
+				return ERR;
 
-	public boolean updateStu(ERRinfo ERR) {
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public boolean updateERR(ERRinfo ERR) {
 
 		try {
 			pstmt = conn
@@ -92,6 +120,10 @@ public class ERRinfoService {
 		try {
 			pstmt = conn.prepareStatement("delete from ERR where ERR_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table ERR drop ERR_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table ERR add ERR_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(ERR_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {

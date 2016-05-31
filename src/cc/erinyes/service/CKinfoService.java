@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.CAinfo;
 import cc.erinyes.model.CKinfo;
 
 public class CKinfoService {
@@ -48,14 +49,14 @@ public class CKinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CKinfo CK = new CKinfo();
-				CK.setid(rs.getInt(1));
-				CK.setno(rs.getString(2));
-				CK.setname(rs.getString(3));
-				CK.setquantity(rs.getInt(4));
-				CK.setcontent(rs.getString(5));
-				CK.setuser(rs.getString(6));
-				CK.setdate(rs.getString(7));
-				
+				CK.setid(rs.getInt(7));
+				CK.setno(rs.getString(1));
+				CK.setname(rs.getString(2));
+				CK.setquantity(rs.getInt(3));
+				CK.setcontent(rs.getString(4));
+				CK.setuser(rs.getString(5));
+				CK.setdate(rs.getString(6));
+
 				CKL.add(CK);
 			}
 			return CKL;
@@ -68,7 +69,7 @@ public class CKinfoService {
 
 	}
 
-	public boolean updateStu(CKinfo CK) {
+	public boolean updateCK(CKinfo CK) {
 
 		try {
 			pstmt = conn
@@ -98,6 +99,10 @@ public class CKinfoService {
 			pstmt = conn.prepareStatement("delete from CK where CK_ID=?");
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table CK drop CK_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table CK add CK_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(CK_ID)");
+			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			e.getStackTrace();
@@ -105,4 +110,32 @@ public class CKinfoService {
 		}
 
 	}
+	public CKinfo queryCKbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from CK where CK_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				CKinfo CK = new CKinfo();
+				CK.setid(rs.getInt(7));
+				CK.setno(rs.getString(1));
+				CK.setname(rs.getString(2));
+				CK.setquantity(rs.getInt(3));
+				CK.setcontent(rs.getString(4));
+				CK.setuser(rs.getString(5));
+				CK.setdate(rs.getString(6));
+				return CK;
+
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
 }

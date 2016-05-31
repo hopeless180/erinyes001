@@ -32,6 +32,7 @@
 		Iterator iter = PGL.iterator();
 	%>
 	<table>
+	<a href = "inputPG.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>派工单代码</td>
 			<td>施工单位</td>
@@ -52,6 +53,8 @@
 			<td><%=PG.getbegin() %></td>
 			<td><%=PG.getend()%></td>
 			<td><%=PG.getname()%></td>
+			<td><a href="deleteInfoServlet?id=<%=PG.getid()%>&key=PG">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=PG.getid()%>&key=PG">修改</a></td>
 		</tr>
 		<%
 			i++;

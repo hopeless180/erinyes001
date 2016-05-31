@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.PGinfo;
 import cc.erinyes.model.RDinfo;
 
 public class RDinfoService {
@@ -48,13 +49,13 @@ public class RDinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				RDinfo RD = new RDinfo();
-				RD.setid(rs.getInt(1));
-				RD.setdate(rs.getString(2));
-				RD.setbegin(rs.getString(3));
-				RD.setend(rs.getString(4));
-				RD.setygname(rs.getString(5));
-				RD.setitem(rs.getString(6));
-				RD.setlocation(rs.getString(7));
+				RD.setid(rs.getInt(7));
+				RD.setdate(rs.getString(1));
+				RD.setbegin(rs.getString(2));
+				RD.setend(rs.getString(3));
+				RD.setygname(rs.getString(4));
+				RD.setitem(rs.getString(5));
+				RD.setlocation(rs.getString(6));
 				RDL.add(RD);
 			}
 			return RDL;
@@ -66,8 +67,36 @@ public class RDinfoService {
 		}
 
 	}
+	
+	public RDinfo queryRDbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from RD where RD_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				RDinfo RD = new RDinfo();
+				RD.setid(rs.getInt(7));
+				RD.setdate(rs.getString(1));
+				RD.setbegin(rs.getString(2));
+				RD.setend(rs.getString(3));
+				RD.setygname(rs.getString(4));
+				RD.setitem(rs.getString(5));
+				RD.setlocation(rs.getString(6));
+				return RD;
 
-	public boolean updateStu(RDinfo RD) {
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public boolean updateRD(RDinfo RD) {
 
 		try {
 			pstmt = conn
@@ -95,6 +124,10 @@ public class RDinfoService {
 		try {
 			pstmt = conn.prepareStatement("delete from RD where RD_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table RD drop RD_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table RD add RD_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(RD_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {

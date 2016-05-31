@@ -32,8 +32,7 @@
 		Iterator iter = CAL.iterator();
 	%>
 	<table>
-		<tr>
-			
+		<a href = "inputCA.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>质检单代码</td>
 			<td>质检项目</td>
@@ -54,6 +53,8 @@
 			<td><%=CA.getanalyst() %></td>
 			<td><%=CA.getdate()%></td>
 			<td><%=CA.getconclusion()%></td>
+			<td><a href="deleteInfoServlet?id=<%=CA.getid()%>&key=CA">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=CA.getid()%>&key=CA">修改</a></td>
 		</tr>
 		<%
 			i++;

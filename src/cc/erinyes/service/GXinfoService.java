@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.ERRinfo;
 import cc.erinyes.model.GXinfo;
 
 public class GXinfoService {
@@ -44,9 +45,9 @@ public class GXinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				GXinfo GX = new GXinfo();
-				GX.setid(rs.getInt(1));
-				GX.setname(rs.getString(2));
-				GX.setinfo(rs.getString(3));
+				GX.setid(rs.getInt(3));
+				GX.setname(rs.getString(1));
+				GX.setinfo(rs.getString(2));
 				GXL.add(GX);
 			}
 			return GXL;
@@ -58,8 +59,32 @@ public class GXinfoService {
 		}
 
 	}
+	
+	public GXinfo queryGXbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from GX where GX_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				GXinfo GX = new GXinfo();
+				GX.setid(rs.getInt(3));
+				GX.setname(rs.getString(1));
+				GX.setinfo(rs.getString(2));
+				return GX;
 
-	public boolean updateStu(GXinfo GX) {
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public boolean updateGX(GXinfo GX) {
 
 		try {
 			pstmt = conn
@@ -82,6 +107,10 @@ public class GXinfoService {
 		try {
 			pstmt = conn.prepareStatement("delete from GX where GX_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table GX drop GX_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table GX add GX_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(GX_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.KCinfo;
 import cc.erinyes.model.MSinfo;
 
 public class MSinfoService {
@@ -47,12 +48,12 @@ public class MSinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				MSinfo MS = new MSinfo();
-				MS.setid(rs.getInt(1));
-				MS.setrepository(rs.getString(2));
-				MS.setmid(rs.getInt(3));
-				MS.setdate(rs.getString(4));
-				MS.setname(rs.getString(5));
-				MS.setquantity(rs.getInt(6));
+				MS.setid(rs.getInt(6));
+				MS.setrepository(rs.getString(1));
+				MS.setmid(rs.getInt(2));
+				MS.setdate(rs.getString(3));
+				MS.setname(rs.getString(4));
+				MS.setquantity(rs.getInt(5));
 				MSL.add(MS);
 			}
 			return MSL;
@@ -64,8 +65,34 @@ public class MSinfoService {
 		}
 
 	}
+	public MSinfo queryMSbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from MS where MS_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				MSinfo MS = new MSinfo();
+				MS.setid(rs.getInt(6));
+				MS.setrepository(rs.getString(1));
+				MS.setmid(rs.getInt(2));
+				MS.setdate(rs.getString(3));
+				MS.setname(rs.getString(4));
+				MS.setquantity(rs.getInt(5));
+				return MS;
 
-	public boolean updateStu(MSinfo MS) {
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public boolean updateMS(MSinfo MS) {
 
 		try {
 			pstmt = conn
@@ -92,6 +119,10 @@ public class MSinfoService {
 		try {
 			pstmt = conn.prepareStatement("delete from MS where MS_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table MS drop MS_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table MS add MS_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(MS_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {

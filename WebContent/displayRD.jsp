@@ -32,6 +32,7 @@
 		Iterator iter = RDL.iterator();
 	%>
 	<table>
+	<a href = "inputRD.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>调度表代码</td>
 			<td>员工姓名</td>
@@ -54,6 +55,8 @@
 			<td><%=RD.getbegin()%></td>
 			<td><%=RD.getend()%></td>
 			<td><%=RD.getdate()%></td>
+			<td><a href="deleteInfoServlet?id=<%=RD.getid()%>&key=RD">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=RD.getid()%>&key=RD">修改</a></td>
 		</tr>
 		<%
 			i++;

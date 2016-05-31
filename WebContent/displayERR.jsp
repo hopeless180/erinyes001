@@ -32,6 +32,7 @@
 		Iterator iter = ERRL.iterator();
 	%>
 	<table>
+	<a href = "inputERR.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>报错单代码</td>
 			<td>错误发现人</td>
@@ -52,6 +53,8 @@
 			<td><%=ERR.getdate() %></td>
 			<td><%=ERR.getinfo()%></td>
 			<td><%=ERR.getstatus()%></td>
+			<td><a href="deleteInfoServlet?id=<%=ERR.getid()%>&key=ERR">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=ERR.getid()%>&key=ERR">修改</a></td>
 		</tr>
 		<%
 			i++;

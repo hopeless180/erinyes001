@@ -15,7 +15,7 @@ import cc.erinyes.service.RKinfoService;
 /**
  * Servlet implementation class queryRK
  */
-@WebServlet(name = "queryRK", urlPatterns = "/queryRK") 
+//@webservlet(name = "queryRK", urlPatterns = "/queryRK") 
 public class queryRK extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryRK extends HttpServlet {
 		List RKL = new RKinfoService().queryAllRK();
 		HttpSession session=request.getSession();
 		session.setAttribute("RKL",RKL);
-		response.sendRedirect("../displayRK.jsp");
+		response.sendRedirect("/mysys/displayRK.jsp");
 	}
 
 }

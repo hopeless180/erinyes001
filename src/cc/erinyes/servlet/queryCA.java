@@ -15,7 +15,7 @@ import cc.erinyes.service.CAinfoService;
 /**
  * Servlet implementation class queryCA
  */
-@WebServlet(name = "queryCA", urlPatterns = "/queryCA") 
+//@webservlet(name = "queryCA", urlPatterns = "/queryCA") 
 public class queryCA extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryCA extends HttpServlet {
 		List CAL = new CAinfoService().queryAllCA();
 		HttpSession session=request.getSession();
 		session.setAttribute("CAL",CAL);
-		response.sendRedirect("../displayCA.jsp");
+		response.sendRedirect("/mysys/displayCA.jsp");
 	}
 
 }

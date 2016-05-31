@@ -15,7 +15,7 @@ import cc.erinyes.service.EHinfoService;
 /**
  * Servlet implementation class queryEH
  */
-@WebServlet(name = "queryEH", urlPatterns = "/queryEH") 
+//@webservlet(name = "queryEH", urlPatterns = "/queryEH") 
 public class queryEH extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryEH extends HttpServlet {
 		List EHL = new EHinfoService().queryAllEH();
 		HttpSession session=request.getSession();
 		session.setAttribute("EHL",EHL);
-		response.sendRedirect("../displayEH.jsp");
+		response.sendRedirect("/mysys/displayEH.jsp");
 	}
 
 }

@@ -32,6 +32,7 @@
 		Iterator iter = RKL.iterator();
 	%>
 	<table>
+	<a href = "inputRK.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>入库单代码</td>
 			<td>编号</td>
@@ -54,6 +55,8 @@
 			<td><%=RK.getcontent()%></td>
 			<td><%=RK.getuser()%></td>
 			<td><%=RK.getdate()%></td>
+			<td><a href="deleteInfoServlet?id=<%=RK.getid()%>&key=RK">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=RK.getid()%>&key=RK">修改</a></td>
 		</tr>
 		<%
 			i++;

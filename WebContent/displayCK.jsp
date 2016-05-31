@@ -32,6 +32,7 @@
 		Iterator iter = CKL.iterator();
 	%>
 	<table>
+	<a href = "inputCK.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>出库单代码</td>
 			<td>编号</td>
@@ -54,6 +55,8 @@
 			<td><%=CK.getcontent()%></td>
 			<td><%=CK.getuser()%></td>
 			<td><%=CK.getdate()%></td>
+			<td><a href="deleteInfoServlet?id=<%=CK.getid()%>&key=CK">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=CK.getid()%>&key=CK">修改</a></td>
 		</tr>
 		<%
 			i++;

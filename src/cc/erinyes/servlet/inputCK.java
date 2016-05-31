@@ -14,7 +14,7 @@ import cc.erinyes.service.CKinfoService;
 /**
  * Servlet implementation class inputCKinfo
  */
-@WebServlet(name = "inputCK", urlPatterns = "/inputCK")
+//@webservlet(name = "inputCK", urlPatterns = "/inputCK")
 public class inputCK extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,9 +55,9 @@ public class inputCK extends HttpServlet {
 		CK.setno(no);
 		CK.setuser(user);
 		if(new CKinfoService().addCK(CK))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputCK.jsp");
+			response.sendRedirect("/mysys/inputCK.jsp");
 			
 	}
 

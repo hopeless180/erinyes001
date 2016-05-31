@@ -15,7 +15,7 @@ import cc.erinyes.service.PGinfoService;
 /**
  * Servlet implementation class queryPG
  */
-@WebServlet(name = "queryPG", urlPatterns = "/queryPG") 
+//@webservlet(name = "queryPG", urlPatterns = "/queryPG") 
 public class queryPG extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryPG extends HttpServlet {
 		List PGL = new PGinfoService().queryAllPG();
 		HttpSession session=request.getSession();
 		session.setAttribute("PGL",PGL);
-		response.sendRedirect("../displayPG.jsp");
+		response.sendRedirect("/mysys/displayPG.jsp");
 	}
 
 }

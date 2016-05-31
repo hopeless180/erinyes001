@@ -15,7 +15,7 @@ import cc.erinyes.service.KCinfoService;
 /**
  * Servlet implementation class queryKC
  */
-@WebServlet(name = "queryKC", urlPatterns = "/queryKC") 
+//@webservlet(name = "queryKC", urlPatterns = "/queryKC") 
 public class queryKC extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryKC extends HttpServlet {
 		List KCL = new KCinfoService().queryAllKC();
 		HttpSession session=request.getSession();
 		session.setAttribute("KCL",KCL);
-		response.sendRedirect("../displayKC.jsp");
+		response.sendRedirect("/mysys/displayKC.jsp");
 	}
 
 }

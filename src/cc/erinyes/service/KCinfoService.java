@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.GXinfo;
 import cc.erinyes.model.KCinfo;
 
 public class KCinfoService {
@@ -46,11 +47,11 @@ public class KCinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				KCinfo KC = new KCinfo();
-				KC.setid(rs.getInt(1));
-				KC.setno(rs.getString(2));
-				KC.setname(rs.getString(3));
-				KC.setquantity(rs.getInt(4));
-				KC.setcontent(rs.getString(5));
+				KC.setid(rs.getInt(5));
+				KC.setno(rs.getString(1));
+				KC.setname(rs.getString(2));
+				KC.setquantity(rs.getInt(3));
+				KC.setcontent(rs.getString(4));
 				KCL.add(KC);
 			}
 			return KCL;
@@ -62,8 +63,33 @@ public class KCinfoService {
 		}
 
 	}
+	public KCinfo queryKCbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from KC where KC_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				KCinfo KC = new KCinfo();
+				KC.setid(rs.getInt(5));
+				KC.setno(rs.getString(1));
+				KC.setname(rs.getString(2));
+				KC.setquantity(rs.getInt(3));
+				KC.setcontent(rs.getString(4));
+				return KC;
 
-	public boolean updateStu(KCinfo KC) {
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public boolean updateKC(KCinfo KC) {
 
 		try {
 			pstmt = conn
@@ -89,6 +115,10 @@ public class KCinfoService {
 		try {
 			pstmt = conn.prepareStatement("delete from KC where KC_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table KC drop KC_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table KC add KC_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(KC_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {

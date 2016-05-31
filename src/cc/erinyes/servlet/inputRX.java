@@ -14,7 +14,7 @@ import cc.erinyes.service.RXinfoService;
 /**
  * Servlet implementation class inputRXinfo
  */
-@WebServlet(name = "inputRX", urlPatterns = "/inputRX")
+//@webservlet(name = "inputRX", urlPatterns = "/inputRX")
 public class inputRX extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,9 +50,9 @@ public class inputRX extends HttpServlet {
 		RX.setname(name);
 		RX.setstatus(status);
 		if(new RXinfoService().addRX(RX))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputRX.jsp");
+			response.sendRedirect("/mysys/inputRX.jsp");
 			
 	}
 

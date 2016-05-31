@@ -14,7 +14,7 @@ import cc.erinyes.service.KCinfoService;
 /**
  * Servlet implementation class inputKCinfo
  */
-@WebServlet(name = "inputKC", urlPatterns = "/inputKC")
+//@webservlet(name = "inputKC", urlPatterns = "/inputKC")
 public class inputKC extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,9 +50,9 @@ public class inputKC extends HttpServlet {
 		KC.setquantity(quantity);
 		KC.setno(no);
 		if(new KCinfoService().addKC(KC))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputKC.jsp");
+			response.sendRedirect("/mysys/inputKC.jsp");
 			
 	}
 

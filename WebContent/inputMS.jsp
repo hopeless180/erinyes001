@@ -33,18 +33,18 @@
 				</tr>
 				<tr>
 					<td>仓库：</td>
-					<td><input type = "text" size = 20 name = "company"></td>
+					<td><input type = "text" size = 20 name = "repository"></td>
 				</tr>
 				<tr>
 					<td>原料编号：</td>
-					<td><input type = "text" size = 20 name = "begin"></td>
+					<td><input type = "text" size = 20 name = "mid"></td>
 				</tr>
 				<tr>
 					<td>数量：</td>
 					<td><input type = "text" size = 20 name = "quantity"></td>
 				<tr>
 					<td>领取日期：</td>
-					<td><input type = "text" size = 20 name = "end"></td>
+					<td><input type = "text" size = 20 name = "date"></td>
 				</tr>
 				<tr>
 					<td>操作人：</td>

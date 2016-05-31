@@ -32,6 +32,7 @@
 		Iterator iter = RXL.iterator();
 	%>
 	<table>
+	<a href = "inputRX.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>员工编号</td>
 			<td>姓名</td>
@@ -48,6 +49,8 @@
 			<td><%=RX.getname()%></td>
 			<td><%=RX.getlocation()%></td>
 			<td><%=RX.getstatus()%></td>
+			<td><a href="deleteInfoServlet?id=<%=RX.getid()%>&key=RX">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=RX.getid()%>&key=RX">修改</a></td>
 		</tr>
 		<%
 			i++;

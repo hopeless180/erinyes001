@@ -15,7 +15,7 @@ import cc.erinyes.service.RXinfoService;
 /**
  * Servlet implementation class queryRX
  */
-@WebServlet(name = "queryRX", urlPatterns = "/queryRX") 
+//@webservlet(name = "queryRX", urlPatterns = "/queryRX") 
 public class queryRX extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryRX extends HttpServlet {
 		List RXL = new RXinfoService().queryAllRX();
 		HttpSession session=request.getSession();
 		session.setAttribute("RXL",RXL);
-		response.sendRedirect("../displayRX.jsp");
+		response.sendRedirect("/mysys/displayRX.jsp");
 	}
 
 }

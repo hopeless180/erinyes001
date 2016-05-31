@@ -14,7 +14,7 @@ import cc.erinyes.service.GXinfoService;
 /**
  * Servlet implementation class inputGXinfo
  */
-@WebServlet(name = "inputGX", urlPatterns = "/inputGX")
+//@webservlet(name = "inputGX", urlPatterns = "/inputGX")
 public class inputGX extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,9 +48,9 @@ public class inputGX extends HttpServlet {
 		GX.setinfo(info);
 		GX.setname(name);
 		if(new GXinfoService().addGX(GX))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputGX.jsp");
+			response.sendRedirect("/mysys/inputGX.jsp");
 			
 	}
 

@@ -32,6 +32,7 @@
 		Iterator iter = GXL.iterator();
 	%>
 	<table>
+	<a href = "inputGX.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>生产工序代码</td>
 			<td>产品</td>
@@ -46,6 +47,8 @@
 			<td><%=GX.getid()%></td>
 			<td><%=GX.getname()%></td>
 			<td><%=GX.getinfo()%></td>
+			<td><a href="deleteInfoServlet?id=<%=GX.getid()%>&key=GX">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=GX.getid()%>&key=GX">修改</a></td>
 		</tr>
 		<%
 			i++;

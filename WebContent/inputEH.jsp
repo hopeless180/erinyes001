@@ -33,19 +33,19 @@
 				</tr>
 				<tr>
 					<td>错误处理人：</td>
-					<td><input type = "text" size = 20 name = "company"></td>
+					<td><input type = "text" size = 20 name = "handler"></td>
 				</tr>
 				<tr>
 					<td>对应报错单代码：</td>
-					<td><input type = "text" size = 20 name = "begin"></td>
+					<td><input type = "text" size = 20 name = "errid"></td>
 				</tr>
 				<tr>
 					<td>处理完成时间：</td>
-					<td><input type = "text" size = 20 name = "end"></td>
+					<td><input type = "text" size = 20 name = "date"></td>
 				</tr>
 				<tr>
 					<td>处理过程：</td>
-					<td><input type = "text" size = 20 name = "name"></td>
+					<td><input type = "text" size = 20 name = "info"></td>
 				</tr>
 				<tr ><td align="center" colspan="2" ><input type="submit"  value="提交">&nbsp;&nbsp; <input
 				type="reset"  value="重置"></td></tr>				

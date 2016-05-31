@@ -15,7 +15,7 @@ import cc.erinyes.service.CKinfoService;
 /**
  * Servlet implementation class queryCK
  */
-@WebServlet(name = "queryCK", urlPatterns = "/queryCK") 
+//@webservlet(name = "queryCK", urlPatterns = "/queryCK") 
 public class queryCK extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryCK extends HttpServlet {
 		List CKL = new CKinfoService().queryAllCK();
 		HttpSession session=request.getSession();
 		session.setAttribute("CKL",CKL);
-		response.sendRedirect("../displayCK.jsp");
+		response.sendRedirect("/mysys/displayCK.jsp");
 	}
 
 }

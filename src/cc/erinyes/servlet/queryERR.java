@@ -15,7 +15,7 @@ import cc.erinyes.service.ERRinfoService;
 /**
  * Servlet implementation class queryERR
  */
-@WebServlet(name = "queryERR", urlPatterns = "/queryERR") 
+//@webservlet(name = "queryERR", urlPatterns = "/queryERR") 
 public class queryERR extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryERR extends HttpServlet {
 		List ERRL = new ERRinfoService().queryAllERR();
 		HttpSession session=request.getSession();
 		session.setAttribute("ERRL",ERRL);
-		response.sendRedirect("../displayERR.jsp");
+		response.sendRedirect("/mysys/displayERR.jsp");
 	}
 
 }

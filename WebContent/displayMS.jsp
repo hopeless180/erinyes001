@@ -32,6 +32,7 @@
 		Iterator iter = MSL.iterator();
 	%>
 	<table>
+	<a href = "inputMS.jsp" target = "main_right">添加</a>
 		<tr>
 			<td>领料单代码</td>
 			<td>仓库</td>
@@ -52,6 +53,8 @@
 			<td><%=MS.getquantity()%></td>
 			<td><%=MS.getdate()%></td>
 			<td><%=MS.getname() %></td>
+			<td><a href="deleteInfoServlet?id=<%=MS.getid()%>&key=MS">删除</a></td>
+			<td><a href="modifyInfoServlet?id=<%=MS.getid()%>&key=MS">修改</a></td>
 		</tr>
 		<%
 			i++;

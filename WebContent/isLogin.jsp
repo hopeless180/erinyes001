@@ -2,8 +2,8 @@
 <%@page import="cc.erinyes.service.userService"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-userTable user=(userTable)session.getAttribute("user");
-if(user==null)
+	userTable user=(userTable)session.getAttribute("user");
+	if(user==null)
 {
  %>
  

@@ -15,7 +15,7 @@ import cc.erinyes.service.GXinfoService;
 /**
  * Servlet implementation class queryGX
  */
-@WebServlet(name = "queryGX", urlPatterns = "/queryGX") 
+//@webservlet(name = "queryGX", urlPatterns = "/queryGX") 
 public class queryGX extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryGX extends HttpServlet {
 		List GXL = new GXinfoService().queryAllGX();
 		HttpSession session=request.getSession();
 		session.setAttribute("GXL",GXL);
-		response.sendRedirect("../displayGX.jsp");
+		response.sendRedirect("/mysys/displayGX.jsp");
 	}
 
 }

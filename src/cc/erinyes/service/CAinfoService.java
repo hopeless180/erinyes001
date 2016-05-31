@@ -47,12 +47,12 @@ public class CAinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CAinfo CA = new CAinfo();
-				CA.setid(rs.getInt(1));
-				CA.setitem(rs.getString(2));
-				CA.setname(rs.getString(3));
-				CA.setanalyst(rs.getString(4));
-				CA.setdate(rs.getString(5));
-				CA.setconclusion(rs.getString(6));
+				CA.setid(rs.getInt(6));
+				CA.setitem(rs.getString(1));
+				CA.setname(rs.getString(2));
+				CA.setanalyst(rs.getString(3));
+				CA.setdate(rs.getString(4));
+				CA.setconclusion(rs.getString(5));
 				CAL.add(CA);
 			}
 			return CAL;
@@ -65,7 +65,7 @@ public class CAinfoService {
 
 	}
 
-	public boolean updateStu(CAinfo CA) {
+	public boolean updateCA(CAinfo CA) {
 
 		try {
 			pstmt = conn
@@ -91,10 +91,40 @@ public class CAinfoService {
 			pstmt = conn.prepareStatement("delete from CA where CA_ID=?");
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table CA drop CA_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table CA add CA_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(CA_ID)");
+			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			e.getStackTrace();
 			return false;
+		}
+
+	}
+	public CAinfo queryCAbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from CA where CA_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				CAinfo CA = new CAinfo();
+				CA.setid(rs.getInt(6));
+				CA.setitem(rs.getString(1));
+				CA.setname(rs.getString(2));
+				CA.setanalyst(rs.getString(3));
+				CA.setdate(rs.getString(4));
+				CA.setconclusion(rs.getString(5));
+				return CA;
+
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 
 	}

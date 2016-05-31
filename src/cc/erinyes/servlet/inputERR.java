@@ -14,7 +14,7 @@ import cc.erinyes.service.ERRinfoService;
 /**
  * Servlet implementation class inputERRinfo
  */
-@WebServlet(name = "inputERR", urlPatterns = "/inputERR")
+//@webservlet(name = "inputERR", urlPatterns = "/inputERR")
 public class inputERR extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,9 +55,9 @@ public class inputERR extends HttpServlet {
 		ERR.setname(name);
 		ERR.setstatus(status);
 		if(new ERRinfoService().addERR(ERR))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputERR.jsp");
+			response.sendRedirect("/mysys/inputERR.jsp");
 			
 	}
 

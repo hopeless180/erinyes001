@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.CKinfo;
 import cc.erinyes.model.RXinfo;
 
 public class RXinfoService {
@@ -45,10 +46,10 @@ public class RXinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				RXinfo RX = new RXinfo();
-				RX.setid(rs.getInt(1));
-				RX.setname(rs.getString(2));
-				RX.setlocation(rs.getString(3));
-				RX.setstatus(rs.getString(4));
+				RX.setid(rs.getInt(4));
+				RX.setname(rs.getString(1));
+				RX.setlocation(rs.getString(2));
+				RX.setstatus(rs.getString(3));
 				
 				RXL.add(RX);
 			}
@@ -62,7 +63,32 @@ public class RXinfoService {
 
 	}
 
-	public boolean updateStu(RXinfo RX) {
+	public RXinfo queryRXbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from RX where RX_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				RXinfo RX = new RXinfo();
+				RX.setid(rs.getInt(4));
+				RX.setname(rs.getString(1));
+				RX.setlocation(rs.getString(2));
+				RX.setstatus(rs.getString(3));
+				return RX;
+
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	public boolean updateRX(RXinfo RX) {
 
 		try {
 			pstmt = conn
@@ -88,6 +114,10 @@ public class RXinfoService {
 		try {
 			pstmt = conn.prepareStatement("delete from RX where RX_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table RX drop RX_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table RX add RX_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(RX_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {

@@ -14,7 +14,7 @@ import cc.erinyes.service.RDinfoService;
 /**
  * Servlet implementation class inputRDinfo
  */
-@WebServlet(name = "inputRD", urlPatterns = "/inputRD")
+//@webservlet(name = "inputRD", urlPatterns = "/inputRD")
 public class inputRD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -56,9 +56,9 @@ public class inputRD extends HttpServlet {
 		RD.setlocation(location);
 		RD.setygname(ygname);
 		if(new RDinfoService().addRD(RD))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputRD.jsp");
+			response.sendRedirect("/mysys/inputRD.jsp");
 			
 	}
 

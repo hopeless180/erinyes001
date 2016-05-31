@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cc.erinyes.model.CKinfo;
 import cc.erinyes.model.DDinfo;
 
 public class DDinfoService {
@@ -48,14 +49,14 @@ public class DDinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				DDinfo DD = new DDinfo();
-				DD.setid(rs.getInt(1));
-				DD.setname(rs.getString(2));
-				DD.setcreator(rs.getString(3));
-				DD.setquantity(rs.getInt(4));
-				DD.setcost(rs.getDouble(5));
-				DD.settotal(rs.getDouble(6));
-				DD.setstatus(rs.getString(7));
-				DD.setcontent(rs.getString(8));
+				DD.setname(rs.getString(1));
+				DD.setcreator(rs.getString(2));
+				DD.setquantity(rs.getInt(3));
+				DD.setcost(rs.getDouble(4));
+				DD.settotal(rs.getDouble(5));
+				DD.setstatus(rs.getString(6));
+				DD.setcontent(rs.getString(7));
+				DD.setid(rs.getInt(8));
 				DDL.add(DD);
 			}
 			return DDL;
@@ -68,7 +69,7 @@ public class DDinfoService {
 
 	}
 
-	public boolean updateStu(DDinfo DD) {
+	public boolean updateDD(DDinfo DD) {
 
 		try {
 			pstmt = conn
@@ -81,7 +82,7 @@ public class DDinfoService {
 			pstmt.setDouble(5, DD.gettotal());
 			pstmt.setString(6, DD.getstatus());
 			pstmt.setString(7, DD.getcontent());
-			pstmt.setInt(9, DD.getid());
+			pstmt.setInt(8, DD.getid());
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -94,13 +95,45 @@ public class DDinfoService {
 	public Boolean deleteDD(int id) {
 
 		try {
-			pstmt = conn.prepareStatement("delete from DD where id=?");
+			pstmt = conn.prepareStatement("delete from DD where DD_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table DD drop DD_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table DD add DD_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(DD_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			e.getStackTrace();
 			return false;
+		}
+
+	}
+	public DDinfo queryDDbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from DD where DD_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				DDinfo DD = new DDinfo();
+				DD.setname(rs.getString(1));
+				DD.setcreator(rs.getString(2));
+				DD.setquantity(rs.getInt(3));
+				DD.setcost(rs.getDouble(4));
+				DD.settotal(rs.getDouble(5));
+				DD.setstatus(rs.getString(6));
+				DD.setcontent(rs.getString(7));
+				DD.setid(rs.getInt(8));
+				return DD;
+
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 
 	}

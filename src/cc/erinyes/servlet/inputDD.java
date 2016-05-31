@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cc.erinyes.service.DDinfoService;
+import javafx.css.ParsedValue;
 
 /**
  * Servlet implementation class inputDDinfo
  */
-@WebServlet(name = "inputDD", urlPatterns = "/inputDD")
+//@webservlet(name = "inputDD", urlPatterns = "/inputDD")
 public class inputDD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,6 +41,7 @@ public class inputDD extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method DDb
 		request.setCharacterEncoding("utf-8");
+		int id=Integer.parseInt(request.getParameter("id"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		String name = request.getParameter("name");
 		String creator = request.getParameter("creator");
@@ -49,6 +51,7 @@ public class inputDD extends HttpServlet {
 		double total = cost * quantity;
 		
 		DDinfo DD=new DDinfo();
+		DD.setid(id);
 		DD.setname(name);
 		DD.setcreator(creator);
 		DD.setcontent(content);
@@ -57,10 +60,10 @@ public class inputDD extends HttpServlet {
 		DD.settotal(total);
 		DD.setquantity(quantity);
 		if(new DDinfoService().addDD(DD))
-			response.sendRedirect("../displayDD.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputDD.jsp");
+			response.sendRedirect("/mysys/inputDD.jsp");
+		}
 			
-	}
 
 }

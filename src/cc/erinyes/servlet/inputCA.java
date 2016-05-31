@@ -14,7 +14,7 @@ import cc.erinyes.service.CAinfoService;
 /**
  * Servlet implementation class inputCAinfo
  */
-@WebServlet(name = "inputCA", urlPatterns = "/inputCA")
+//@webservlet(name = "inputCA", urlPatterns = "/inputCA")
 public class inputCA extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -54,9 +54,9 @@ public class inputCA extends HttpServlet {
 		CA.setitem(item);
 		CA.setname(name);
 		if(new CAinfoService().addCA(CA))
-			response.sendRedirect("../input_success.jsp");
+			response.sendRedirect("/mysys/success.jsp");
 		else
-			response.sendRedirect("../inputCA.jsp");
+			response.sendRedirect("/mysys/inputCA.jsp");
 			
 	}
 

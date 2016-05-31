@@ -15,7 +15,7 @@ import cc.erinyes.service.RDinfoService;
 /**
  * Servlet implementation class queryRD
  */
-@WebServlet(name = "queryRD", urlPatterns = "/queryRD") 
+//@webservlet(name = "queryRD", urlPatterns = "/queryRD") 
 public class queryRD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class queryRD extends HttpServlet {
 		List RDL = new RDinfoService().queryAllRD();
 		HttpSession session=request.getSession();
 		session.setAttribute("RDL",RDL);
-		response.sendRedirect("../displayRD.jsp");
+		response.sendRedirect("/mysys/displayRD.jsp");
 	}
 
 }

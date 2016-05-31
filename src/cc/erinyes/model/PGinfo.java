@@ -30,7 +30,7 @@ public class PGinfo {
 		return neirong;
 	}
 	public void setneirong(String neirong){
-		this.company = neirong;
+		this.neirong = neirong;
 	}
 	public String getbegin(){
 		return begin;

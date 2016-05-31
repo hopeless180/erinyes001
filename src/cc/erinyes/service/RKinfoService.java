@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cc.erinyes.model.CKinfo;
 import cc.erinyes.model.RKinfo;
 
 public class RKinfoService {
@@ -48,13 +49,13 @@ public class RKinfoService {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				RKinfo RK = new RKinfo();
-				RK.setid(rs.getInt(1));
-				RK.setno(rs.getString(2));
-				RK.setname(rs.getString(3));
-				RK.setquantity(rs.getInt(4));
-				RK.setcontent(rs.getString(5));
-				RK.setuser(rs.getString(6));
-				RK.setdate(rs.getString(7));
+				RK.setid(rs.getInt(7));
+				RK.setno(rs.getString(1));
+				RK.setname(rs.getString(2));
+				RK.setquantity(rs.getInt(3));
+				RK.setcontent(rs.getString(4));
+				RK.setuser(rs.getString(5));
+				RK.setdate(rs.getString(6));
 				
 				RKL.add(RK);
 			}
@@ -68,7 +69,35 @@ public class RKinfoService {
 
 	}
 
-	public boolean updateStu(RKinfo RK) {
+	public RKinfo queryRKbyID(int id) {
+		try {
+			pstmt = conn
+					.prepareStatement("select * from RK where RK_ID=?");
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				RKinfo RK = new RKinfo();
+				RK.setid(rs.getInt(7));
+				RK.setno(rs.getString(1));
+				RK.setname(rs.getString(2));
+				RK.setquantity(rs.getInt(3));
+				RK.setcontent(rs.getString(4));
+				RK.setuser(rs.getString(5));
+				RK.setdate(rs.getString(6));
+				return RK;
+
+			}
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	public boolean updateRK(RKinfo RK) {
 
 		try {
 			pstmt = conn
@@ -97,6 +126,10 @@ public class RKinfoService {
 		try {
 			pstmt = conn.prepareStatement("delete from RK where RK_ID=?");
 			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table RK drop RK_ID");
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement("alter table RK add RK_ID int NOT NULL AUTO_INCREMENT, add PRIMARY KEY(RK_ID)");
 			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {
